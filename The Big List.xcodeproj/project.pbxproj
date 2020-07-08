@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80EF0AB24B594DF002338E3 /* BigListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80EF0AA24B594DF002338E3 /* BigListRow.swift */; };
 		E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */; };
 		E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153BE24ABFC7500DBB007 /* ContentView.swift */; };
 		E83153C124ABFC7600DBB007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E83153C024ABFC7600DBB007 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E80EF0AA24B594DF002338E3 /* BigListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigListRow.swift; sourceTree = "<group>"; };
 		E83153B924ABFC7500DBB007 /* The Big List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Big List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Big_ListApp.swift; sourceTree = "<group>"; };
 		E83153BE24ABFC7500DBB007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				E8BD1D8224B2E4FD005754A5 /* NewListButton.swift */,
 				E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */,
 				E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */,
+				E80EF0AA24B594DF002338E3 /* BigListRow.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				E8BD1D8124B2E4D0005754A5 /* EditListSheetView.swift in Sources */,
 				E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */,
 				E883BEF324B050570074B839 /* SingleListView.swift in Sources */,
+				E80EF0AB24B594DF002338E3 /* BigListRow.swift in Sources */,
 				E8D4FF8124AFDF6300832DE3 /* AppState.swift in Sources */,
 				E8BD1D8324B2E4FD005754A5 /* NewListButton.swift in Sources */,
 			);

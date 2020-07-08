@@ -148,4 +148,13 @@ class AppState : ObservableObject {
             return false
         }
     }
+    
+    func renameListItem(listItemId: Int64, newListItemText: String) -> Bool {
+        do {
+            try db.run(AppState.listItemTable.filter(AppState.id == listItemId).update(AppState.listItemName <- newListItemText))
+            return true
+        } catch {
+            return false
+        }
+    }
 }

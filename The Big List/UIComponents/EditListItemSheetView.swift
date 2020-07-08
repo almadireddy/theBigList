@@ -10,7 +10,9 @@ import SwiftUI
 struct EditListItemSheetView: View {
     @Binding var listItem: BigListItem
     @State var newListItemName: String = ""
-    
+    @EnvironmentObject var appState: AppState
+    @Environment(\.presentationMode) var presentationMode
+
     var body : some View {
         return NavigationView {
             ScrollView {
@@ -20,10 +22,15 @@ struct EditListItemSheetView: View {
                     })
                 }
             }
-            .navigationTitle("Editing List")
+            .onAppear() {
+                self.newListItemName = self.listItem.listText
+            }
+            .navigationTitle("Editing List item")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
-                print("\(newListItemName)")
+                let worked = self.appState.renameListItem(listItemId: self.listItem.id, newListItemText: self.newListItemName)
+                print(worked)
+                self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Save")
             })

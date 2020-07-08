@@ -7,40 +7,39 @@
 
 import SwiftUI
 
+enum sheetType {
+    case newListItem, editListItem
+}
+
 struct SingleListView : View {
     var list: BigList
     @EnvironmentObject var allLists: AppState
-    @State private var presentNewItemSheet: Bool = false
     @State private var currentListItems: [BigListItem] = []
     @State private var listItemToEdit: BigListItem = BigListItem.defaultBigListItem()
-    @State private var showEditListItemSheet: Bool = false
+    @State private var showSheet: Bool = false
+    @State private var selectedSheet: sheetType = sheetType.newListItem
     
     private func deleteRow(at indexSet: IndexSet) {
         print("hey")
     }
+    
+    private func refreshListItems() {
+        withAnimation(.easeInOut(duration: 0.35)) {
+            self.currentListItems = self.allLists.getListItems(listId: self.list.id)!
+        }
+    }
 
     var body: some View {
-        
         return ScrollView() {
             VStack(alignment: .leading, spacing: 15) {
                 if self.currentListItems.count > 0 {
                     ForEach(self.currentListItems, id: \.id) { listItem in
-                        Text(listItem.listText)
-                            .font(.title2)
-                            .multilineTextAlignment(.leading)
-                            .frame(minWidth: 0,
-                                   idealWidth: .infinity,
-                                   maxWidth: .infinity,
-                                   minHeight: 60,
-                                   alignment: .leading)
-                            .padding(.horizontal)
-                            .background(Color("ThemeBg"))
-                            .cornerRadius(15)
+                        BigListRow(text: listItem.listText)
                             .contextMenu {
                                 Button(action: {
                                     self.listItemToEdit = listItem
-                                    self.showEditListItemSheet = true
-                                    print(listItem.listText)
+                                    self.selectedSheet = sheetType.editListItem
+                                    self.showSheet = true
                                 }) {
                                     HStack {
                                         Text("Edit item")
@@ -48,9 +47,8 @@ struct SingleListView : View {
                                     }
                                 }
                                 Button(action: {
-                                    print("deleteing \(listItem.listText)")
                                     _ = self.allLists.deleteListItem(listItemId: listItem.id)
-                                    _ = self.allLists.refreshLists()
+                                    self.refreshListItems()
                                 }) {
                                     HStack {
                                         Text("Delete list item")
@@ -62,9 +60,11 @@ struct SingleListView : View {
                     }
                     .onDelete(perform: self.deleteRow)
                 } else {
-                    Text("Add a new item below!")
+                    Text("It's lonely here. Add a new item below!")
+                        .font(.system(.body, design: .rounded))
+                        .padding(.vertical)
+                        .frame(alignment: .center)
                 }
-                
             }
             .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
@@ -72,19 +72,28 @@ struct SingleListView : View {
         .navigationBarTitle(list.listName)
         .toolbar(content: {
             Button(action: {
-                self.presentNewItemSheet = true
+                self.selectedSheet = sheetType.newListItem
+                self.showSheet = true
             }) {
                 Text("New item").font(.system(.body, design: .rounded))
             }
         })
-        .sheet(isPresented: $presentNewItemSheet, content: {
-            NewListItemForm(list: list).environmentObject(allLists)
-        })
-        .sheet(isPresented: $showEditListItemSheet) {
-            EditListItemSheetView(listItem: self.$listItemToEdit)
+        .sheet(isPresented: $showSheet) {
+            if self.selectedSheet == sheetType.newListItem {
+                NewListItemForm(list: list).environmentObject(allLists)
+                    .onDisappear() {
+                        self.refreshListItems()
+                    }
+            }
+            else if self.selectedSheet == sheetType.editListItem {
+                EditListItemSheetView(listItem: self.$listItemToEdit).environmentObject(allLists)
+                    .onDisappear() {
+                        self.refreshListItems()
+                    }
+            }
         }
         .onAppear {
-            self.currentListItems = allLists.getListItems(listId: list.id)!
+            self.refreshListItems()
         }
     }
 }
