@@ -17,6 +17,10 @@ class BigListItem : Encodable {
         self.listText = listText
         self.listId = listId
     }
+    
+    static func defaultBigListItem() -> BigListItem {
+        return BigListItem(id: 0, listText: "Default", listId: 0)
+    }
 }
 
 class BigList : Hashable, ObservableObject {
@@ -31,6 +35,10 @@ class BigList : Hashable, ObservableObject {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(listName)
+    }
+    
+    static func defaultBigList() -> BigList {
+        return BigList(id: 0, listName: "default")
     }
 }
 

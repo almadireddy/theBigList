@@ -15,6 +15,10 @@
 		E83153DA24ABFC7700DBB007 /* The_Big_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153D924ABFC7700DBB007 /* The_Big_ListUITests.swift */; };
 		E883BEF324B050570074B839 /* SingleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883BEF224B050570074B839 /* SingleListView.swift */; };
 		E883BEF524B0508E0074B839 /* NewBigListForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E883BEF424B0508E0074B839 /* NewBigListForm.swift */; };
+		E8BD1D8124B2E4D0005754A5 /* EditListSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8024B2E4D0005754A5 /* EditListSheetView.swift */; };
+		E8BD1D8324B2E4FD005754A5 /* NewListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8224B2E4FD005754A5 /* NewListButton.swift */; };
+		E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */; };
+		E8BD1D8724B2F13D005754A5 /* EditListItemSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */; };
 		E8D4FF7F24AFDB8700832DE3 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E8D4FF7E24AFDB8700832DE3 /* SQLite */; };
 		E8D4FF8124AFDF6300832DE3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8024AFDF6300832DE3 /* AppState.swift */; };
 		E8D4FF8324AFDFAE00832DE3 /* BigList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8224AFDFAE00832DE3 /* BigList.swift */; };
@@ -53,6 +57,10 @@
 		E83153DB24ABFC7700DBB007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E883BEF224B050570074B839 /* SingleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleListView.swift; sourceTree = "<group>"; };
 		E883BEF424B0508E0074B839 /* NewBigListForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBigListForm.swift; sourceTree = "<group>"; };
+		E8BD1D8024B2E4D0005754A5 /* EditListSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListSheetView.swift; sourceTree = "<group>"; };
+		E8BD1D8224B2E4FD005754A5 /* NewListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListButton.swift; sourceTree = "<group>"; };
+		E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
+		E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListItemSheetView.swift; sourceTree = "<group>"; };
 		E8D4FF8024AFDF6300832DE3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		E8D4FF8224AFDFAE00832DE3 /* BigList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigList.swift; sourceTree = "<group>"; };
 		E8D4FF8524AFE08A00832DE3 /* BigTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextField.swift; sourceTree = "<group>"; };
@@ -151,6 +159,10 @@
 				E8D4FF8524AFE08A00832DE3 /* BigTextField.swift */,
 				E883BEF224B050570074B839 /* SingleListView.swift */,
 				E883BEF424B0508E0074B839 /* NewBigListForm.swift */,
+				E8BD1D8024B2E4D0005754A5 /* EditListSheetView.swift */,
+				E8BD1D8224B2E4FD005754A5 /* NewListButton.swift */,
+				E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */,
+				E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -291,12 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8D4FF8624AFE08A00832DE3 /* BigTextField.swift in Sources */,
+				E8BD1D8724B2F13D005754A5 /* EditListItemSheetView.swift in Sources */,
+				E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */,
 				E883BEF524B0508E0074B839 /* NewBigListForm.swift in Sources */,
 				E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */,
 				E8D4FF8324AFDFAE00832DE3 /* BigList.swift in Sources */,
+				E8BD1D8124B2E4D0005754A5 /* EditListSheetView.swift in Sources */,
 				E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */,
 				E883BEF324B050570074B839 /* SingleListView.swift in Sources */,
 				E8D4FF8124AFDF6300832DE3 /* AppState.swift in Sources */,
+				E8BD1D8324B2E4FD005754A5 /* NewListButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -438,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
