@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditListItemSheetView: View {
-    @Binding var listItem: BigListItem
+    var listItem: BigListItem
     @State var newListItemName: String = ""
     @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var presentationMode
@@ -23,6 +23,7 @@ struct EditListItemSheetView: View {
                 }
             }
             .onAppear() {
+                print(self.listItem.listText)
                 self.newListItemName = self.listItem.listText
             }
             .navigationTitle("Editing List item")

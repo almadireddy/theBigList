@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E805D5F324B81D6B0060547D /* BigList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */; };
 		E80EF0AB24B594DF002338E3 /* BigListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80EF0AA24B594DF002338E3 /* BigListRow.swift */; };
 		E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */; };
 		E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153BE24ABFC7500DBB007 /* ContentView.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E805D5F224B81D6B0060547D /* BigList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BigList.xcdatamodel; sourceTree = "<group>"; };
 		E80EF0AA24B594DF002338E3 /* BigListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigListRow.swift; sourceTree = "<group>"; };
 		E83153B924ABFC7500DBB007 /* The Big List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Big List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Big_ListApp.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		E83153B024ABFC7500DBB007 = {
 			isa = PBXGroup;
 			children = (
+				E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */,
 				E83153BB24ABFC7500DBB007 /* The Big List */,
 				E83153CD24ABFC7600DBB007 /* The Big ListTests */,
 				E83153D824ABFC7700DBB007 /* The Big ListUITests */,
@@ -310,6 +313,7 @@
 				E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */,
 				E883BEF524B0508E0074B839 /* NewBigListForm.swift in Sources */,
 				E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */,
+				E805D5F324B81D6B0060547D /* BigList.xcdatamodeld in Sources */,
 				E8D4FF8324AFDFAE00832DE3 /* BigList.swift in Sources */,
 				E8BD1D8124B2E4D0005754A5 /* EditListSheetView.swift in Sources */,
 				E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */,
@@ -651,6 +655,19 @@
 			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E805D5F224B81D6B0060547D /* BigList.xcdatamodel */,
+			);
+			currentVersion = E805D5F224B81D6B0060547D /* BigList.xcdatamodel */;
+			path = BigList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E83153B124ABFC7500DBB007 /* Project object */;
 }

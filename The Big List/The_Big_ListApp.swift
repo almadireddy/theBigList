@@ -10,8 +10,6 @@ import SQLite
 
 @main
 struct The_Big_ListApp: App {
-    var myLists = [String: BigList]()
-    
     var appState = AppState()
     
     var body: some Scene {

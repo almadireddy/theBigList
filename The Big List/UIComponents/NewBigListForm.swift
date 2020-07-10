@@ -31,12 +31,6 @@ struct NewBigListForm: View {
                     if (listNameError.count > 0) {
                         Text(listNameError).foregroundColor(.red).font(.body)
                     }
-                    
-                    TextEditor(text: $description)
-                        .frame(height: 150)
-                        .padding(.all)
-                        .border(Color("ThemeBg"), width: 2)
-                        
                 }
                 .padding(.horizontal, 15)
                 .padding(.bottom, 35)
