@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BigListItem : Encodable {
+class BigListItemOld : Encodable {
     var id: Int64
     var listText: String
     var listId: Int64
@@ -18,12 +18,12 @@ class BigListItem : Encodable {
         self.listId = listId
     }
     
-    static func defaultBigListItem() -> BigListItem {
-        return BigListItem(id: 0, listText: "Default", listId: 0)
+    static func defaultBigListItem() -> BigListItemOld {
+        return BigListItemOld(id: 0, listText: "Default", listId: 0)
     }
 }
 
-class BigList : Hashable, ObservableObject {
+class BigListOld : Hashable, ObservableObject {
     @Published var id: Int64
     @Published var listName: String
     
@@ -37,11 +37,11 @@ class BigList : Hashable, ObservableObject {
         hasher.combine(listName)
     }
     
-    static func defaultBigList() -> BigList {
-        return BigList(id: 0, listName: "default")
+    static func defaultBigList() -> BigListOld {
+        return BigListOld(id: 0, listName: "default")
     }
 }
 
-func ==(lhs: BigList, rhs: BigList) -> Bool {
+func ==(lhs: BigListOld, rhs: BigListOld) -> Bool {
     return lhs.id == rhs.id
 }

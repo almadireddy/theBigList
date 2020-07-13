@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,10 +21,14 @@
 		E8BD1D8324B2E4FD005754A5 /* NewListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8224B2E4FD005754A5 /* NewListButton.swift */; };
 		E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */; };
 		E8BD1D8724B2F13D005754A5 /* EditListItemSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */; };
-		E8D4FF7F24AFDB8700832DE3 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E8D4FF7E24AFDB8700832DE3 /* SQLite */; };
-		E8D4FF8124AFDF6300832DE3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8024AFDF6300832DE3 /* AppState.swift */; };
-		E8D4FF8324AFDFAE00832DE3 /* BigList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8224AFDFAE00832DE3 /* BigList.swift */; };
+		E8BFB98D24B98910007B5B05 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BFB98C24B98910007B5B05 /* PersistentContainer.swift */; };
+		E8BFB99224B99B37007B5B05 /* BigListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BFB98E24B99B37007B5B05 /* BigListItem+CoreDataClass.swift */; };
+		E8BFB99324B99B37007B5B05 /* BigListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BFB98F24B99B37007B5B05 /* BigListItem+CoreDataProperties.swift */; };
+		E8BFB99424B99B37007B5B05 /* BigList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BFB99024B99B37007B5B05 /* BigList+CoreDataClass.swift */; };
+		E8BFB99524B99B37007B5B05 /* BigList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BFB99124B99B37007B5B05 /* BigList+CoreDataProperties.swift */; };
+		E8D4FF8324AFDFAE00832DE3 /* BigListOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8224AFDFAE00832DE3 /* BigListOld.swift */; };
 		E8D4FF8624AFE08A00832DE3 /* BigTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8524AFE08A00832DE3 /* BigTextField.swift */; };
+		E8D990A124BC26BE004D3964 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D990A024BC26BE004D3964 /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +69,14 @@
 		E8BD1D8224B2E4FD005754A5 /* NewListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListButton.swift; sourceTree = "<group>"; };
 		E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
 		E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListItemSheetView.swift; sourceTree = "<group>"; };
-		E8D4FF8024AFDF6300832DE3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		E8D4FF8224AFDFAE00832DE3 /* BigList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigList.swift; sourceTree = "<group>"; };
+		E8BFB98C24B98910007B5B05 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		E8BFB98E24B99B37007B5B05 /* BigListItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BigListItem+CoreDataClass.swift"; path = "The Big List/BigListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E8BFB98F24B99B37007B5B05 /* BigListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BigListItem+CoreDataProperties.swift"; path = "The Big List/BigListItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E8BFB99024B99B37007B5B05 /* BigList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BigList+CoreDataClass.swift"; path = "The Big List/BigList+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E8BFB99124B99B37007B5B05 /* BigList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BigList+CoreDataProperties.swift"; path = "The Big List/BigList+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E8D4FF8224AFDFAE00832DE3 /* BigListOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigListOld.swift; sourceTree = "<group>"; };
 		E8D4FF8524AFE08A00832DE3 /* BigTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextField.swift; sourceTree = "<group>"; };
+		E8D990A024BC26BE004D3964 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8D4FF7F24AFDB8700832DE3 /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +107,10 @@
 		E83153B024ABFC7500DBB007 = {
 			isa = PBXGroup;
 			children = (
-				E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */,
+				E8BFB98E24B99B37007B5B05 /* BigListItem+CoreDataClass.swift */,
+				E8BFB98F24B99B37007B5B05 /* BigListItem+CoreDataProperties.swift */,
+				E8BFB99024B99B37007B5B05 /* BigList+CoreDataClass.swift */,
+				E8BFB99124B99B37007B5B05 /* BigList+CoreDataProperties.swift */,
 				E83153BB24ABFC7500DBB007 /* The Big List */,
 				E83153CD24ABFC7600DBB007 /* The Big ListTests */,
 				E83153D824ABFC7700DBB007 /* The Big ListUITests */,
@@ -120,14 +131,16 @@
 		E83153BB24ABFC7500DBB007 /* The Big List */ = {
 			isa = PBXGroup;
 			children = (
+				E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */,
 				E8D4FF8424AFE06E00832DE3 /* UIComponents */,
 				E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */,
-				E8D4FF8224AFDFAE00832DE3 /* BigList.swift */,
-				E8D4FF8024AFDF6300832DE3 /* AppState.swift */,
+				E8D4FF8224AFDFAE00832DE3 /* BigListOld.swift */,
 				E83153BE24ABFC7500DBB007 /* ContentView.swift */,
 				E83153C024ABFC7600DBB007 /* Assets.xcassets */,
 				E83153C524ABFC7600DBB007 /* Info.plist */,
 				E83153C224ABFC7600DBB007 /* Preview Content */,
+				E8BFB98C24B98910007B5B05 /* PersistentContainer.swift */,
+				E8D990A024BC26BE004D3964 /* AppState.swift */,
 			);
 			path = "The Big List";
 			sourceTree = "<group>";
@@ -190,7 +203,6 @@
 			);
 			name = "The Big List";
 			packageProductDependencies = (
-				E8D4FF7E24AFDB8700832DE3 /* SQLite */,
 			);
 			productName = "The Big List";
 			productReference = E83153B924ABFC7500DBB007 /* The Big List.app */;
@@ -264,7 +276,6 @@
 			);
 			mainGroup = E83153B024ABFC7500DBB007;
 			packageReferences = (
-				E8D4FF7D24AFDB8700832DE3 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			productRefGroup = E83153BA24ABFC7500DBB007 /* Products */;
 			projectDirPath = "";
@@ -311,15 +322,20 @@
 				E8D4FF8624AFE08A00832DE3 /* BigTextField.swift in Sources */,
 				E8BD1D8724B2F13D005754A5 /* EditListItemSheetView.swift in Sources */,
 				E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */,
+				E8D990A124BC26BE004D3964 /* AppState.swift in Sources */,
 				E883BEF524B0508E0074B839 /* NewBigListForm.swift in Sources */,
+				E8BFB99524B99B37007B5B05 /* BigList+CoreDataProperties.swift in Sources */,
+				E8BFB99424B99B37007B5B05 /* BigList+CoreDataClass.swift in Sources */,
+				E8BFB98D24B98910007B5B05 /* PersistentContainer.swift in Sources */,
 				E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */,
 				E805D5F324B81D6B0060547D /* BigList.xcdatamodeld in Sources */,
-				E8D4FF8324AFDFAE00832DE3 /* BigList.swift in Sources */,
+				E8BFB99324B99B37007B5B05 /* BigListItem+CoreDataProperties.swift in Sources */,
+				E8D4FF8324AFDFAE00832DE3 /* BigListOld.swift in Sources */,
 				E8BD1D8124B2E4D0005754A5 /* EditListSheetView.swift in Sources */,
+				E8BFB99224B99B37007B5B05 /* BigListItem+CoreDataClass.swift in Sources */,
 				E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */,
 				E883BEF324B050570074B839 /* SingleListView.swift in Sources */,
 				E80EF0AB24B594DF002338E3 /* BigListRow.swift in Sources */,
-				E8D4FF8124AFDF6300832DE3 /* AppState.swift in Sources */,
 				E8BD1D8324B2E4FD005754A5 /* NewListButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,25 +652,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E8D4FF7D24AFDB8700832DE3 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.12.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E8D4FF7E24AFDB8700832DE3 /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E8D4FF7D24AFDB8700832DE3 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */ = {

@@ -7,50 +7,39 @@
 
 import SwiftUI
 
-enum SheetType {
-    case newListItem, editListItem
-}
 
 struct SingleListView : View {
-    var list: BigList
-    @EnvironmentObject var allLists: AppState
-    @State private var currentListItems: [BigListItem] = []
-    @State private var listItemToEdit: BigListItem = BigListItem.defaultBigListItem()
+    var listName: String
+    var items: Array<BigListItem>
     @State private var showSheet: Bool = false
-    @State private var selectedSheet: SheetType = SheetType.newListItem
+    @EnvironmentObject private var store : AppStore
     
-    private func deleteRow(at indexSet: IndexSet) {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: BigList.entity(), sortDescriptors: []) var allLists: FetchedResults<BigList>
+    
+    func delete(at offsets: IndexSet) {
         print("hey")
-    }
-    
-    private func refreshListItems() {
-        withAnimation(.easeInOut(duration: 0.35)) {
-            self.currentListItems = self.allLists.getListItems(listId: self.list.id)!
-        }
     }
 
     var body: some View {
-        return ScrollView() {
-            VStack(spacing: 15) {
-                if self.currentListItems.count > 0 {
-                    ForEach(self.currentListItems, id: \.id) { listItem in
-                        BigListRow(listItem: listItem, listItemToEdit: self.$listItemToEdit, editSheetPresented: self.$showSheet, sheetType: self.$selectedSheet)
-                    }
-                } else {
-                    Text("It's lonely here. Add a new item below!")
-                        .font(.system(.body, design: .rounded))
-                        .padding(.vertical)
-                        .frame(alignment: .center)
-                }
+        return List {
+            ForEach(items, id: \.id) { listItem in
+                BigListRow(listItem: listItem, editSheetPresented: self.$showSheet)
             }
-            .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
+            .onDelete(perform: delete)
+        
+            if self.items.count == 0 {
+                Text("It's lonely here. Add a new item below!")
+                    .font(.system(.body, design: .rounded))
+                    .padding(.vertical)
+                    .frame(alignment: .center)
+            }
         }
-        .navigationBarTitle(list.listName)
+        .navigationBarTitle(listName)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 Button(action: {
-                    self.selectedSheet = SheetType.newListItem
+                    self.store.setSelectedSheet(.newListItem)
                     self.showSheet = true
                 }) {
                     HStack {
@@ -63,7 +52,7 @@ struct SingleListView : View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    self.selectedSheet = SheetType.newListItem
+                    self.store.setSelectedSheet(.listSettings)
                     self.showSheet = true
                 }) {
                     Image(systemName: "gear")
@@ -71,34 +60,29 @@ struct SingleListView : View {
                 .padding(.vertical)
             }
         }
-        .sheet(isPresented: $showSheet) {
-            if self.selectedSheet == SheetType.newListItem {
-                NewListItemForm(list: list).environmentObject(allLists)
-                    .onDisappear() {
-                        self.refreshListItems()
-                    }
+        .sheet(isPresented: self.$showSheet) {
+            if self.store.state.selectedSheet == SheetType.newListItem {
+                NewListItemForm(listName: self.listName).environment(\.managedObjectContext, self.moc)
             }
-            else if self.selectedSheet == SheetType.editListItem {
-                EditListItemSheetView(listItem: self.listItemToEdit).environmentObject(allLists)
-                    .onDisappear() {
-                        self.refreshListItems()
-                    }
+            else if self.store.state.selectedSheet == SheetType.editListItem {
+                EditListItemSheetView(listName: self.listName).environment(\.managedObjectContext, self.moc)
             }
-        }
-        .onAppear {
-            self.refreshListItems()
+            else if self.store.state.selectedSheet == SheetType.listSettings {
+                Text("hm")
+            }
         }
     }
 }
  
 struct NewListItemForm: View {
-    var list: BigList
+    var listName: String = ""
     @State private var newItemText: String = ""
-    @EnvironmentObject var allLists: AppState
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: BigList.entity(), sortDescriptors: []) var allLists: FetchedResults<BigList>
     
     var body: some View {
-        NavigationView() {
+        return NavigationView() {
             ScrollView() {
                 VStack(alignment: .leading) {
                     BigTextField(enteredText: $newItemText, placeholder: "New item" , onEditCommit: {
@@ -108,8 +92,24 @@ struct NewListItemForm: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(trailing:
                         Button(action: {
-                            _ = self.allLists.addNewListItem(listItemText: newItemText, parentListId: list.id)
-                            _ = self.allLists.refreshLists()
+                            let newListItem = BigListItem(context: moc)
+                            let parentList = allLists.first(where: { l in
+                                return l.listName ?? "" == self.listName
+                            })
+                            
+                            newListItem.listItemText = self.newItemText
+                            newListItem.id = UUID()
+                            newListItem.isComplete = false
+                            
+                            parentList?.addToListItems(newListItem)
+                            
+                            
+                            do {
+                               try moc.save()
+                            } catch {
+                                print("couldn't save item : \(error)")
+                            }
+                            
                             self.newItemText = ""
                             self.presentationMode.wrappedValue.dismiss()
                         }) {

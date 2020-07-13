@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import CoreData
+import Foundation
 
 struct ContentView: View {
     @State var showAlert = false
-    @EnvironmentObject var myLists: AppState
     @State private var showActionSheet = false
     @State var showingDetail = false
     @State var showRenameSheet = false
-    @State private var action: Int? = 0
-    @State var listToRename: BigList = BigList.defaultBigList()
+    @State private var action: UUID? = UUID()
+    @State var listToRename: BigListOld = BigListOld.defaultBigList()
+    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: BigList.entity(), sortDescriptors: []) var bigLists: FetchedResults<BigList>
     
     var body: some View {
         return NavigationView {
@@ -23,13 +27,15 @@ struct ContentView: View {
                     GridItem(.flexible()),
                     GridItem(.flexible())
                 ], alignment: .leading, spacing: 10.0) {
-                    ForEach(self.myLists.lists, id: \.self) { list in
-                        NavigationLink(destination: SingleListView(list: list), tag: Int(list.id), selection: $action) {
+                    ForEach(bigLists, id: \.id) { list in
+                        NavigationLink(destination: SingleListView(listName: list.safeListName, items: list.listItemArray),
+                                       tag: list.id ?? UUID(),
+                                       selection: $action) {
                             Button(action: {
-                                self.action = Int(list.id)
+                                self.action = list.id ?? UUID()
                             }) {
                                 VStack() {
-                                    Text("\(list.listName)")
+                                    Text("\(list.listName ?? "none")")
                                         .bold()
                                         .foregroundColor(Color("TextColor"))
                                         .font(.system(.headline, design: .rounded))
@@ -40,8 +46,7 @@ struct ContentView: View {
                             .buttonStyle(GradientButtonStyle())
                             .contextMenu() {
                                 Button(action: {
-                                    self.listToRename = list
-                                    self.showRenameSheet = true
+                                    print("edit")
                                 }) {
                                     HStack {
                                         Text("Edit list")
@@ -49,8 +54,7 @@ struct ContentView: View {
                                     }
                                 }
                                 Button(action: {
-                                    _ = self.myLists.deleteList(listName: list.listName)
-                                    _ = self.myLists.refreshLists()
+                                    print("delete")
                                 }) {
                                     HStack {
                                         Text("Delete list")
@@ -59,7 +63,7 @@ struct ContentView: View {
                                 }
                             }
                             .sheet(isPresented: self.$showRenameSheet) {
-                                EditListSheetView(list: self.$listToRename).environmentObject(myLists)
+                                Text("hey")
                             }
                         }
                     }
@@ -74,8 +78,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var sampleState = AppState()
     static var previews: some View {
-        ContentView().environmentObject(sampleState)
+        ContentView()
     }
 }

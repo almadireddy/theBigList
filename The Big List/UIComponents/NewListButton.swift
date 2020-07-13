@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewListButton: View {
     @Binding var showingDetail: Bool;
-    @EnvironmentObject var myLists: AppState
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         Button(action: {
@@ -27,7 +27,7 @@ struct NewListButton: View {
         .background(Color("ThemeBg"))
         .cornerRadius(10.0)
         .sheet(isPresented: $showingDetail) {
-            NewBigListForm().environmentObject(myLists)
+            NewBigListForm().environment(\.managedObjectContext, moc)
         }
     }
 }

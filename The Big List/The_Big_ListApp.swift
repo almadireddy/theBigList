@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
-import SQLite
+import Foundation
 
 @main
 struct The_Big_ListApp: App {
-    var appState = AppState()
+    let context = PersistentContainer.persistentContainer.viewContext
+    let store = AppStore()
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(appState)
+            ContentView()
+                .environment(\.managedObjectContext, context)
+                .environmentObject(store)
         }
     }
 }

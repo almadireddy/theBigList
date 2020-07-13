@@ -8,29 +8,23 @@
 import SwiftUI
 
 struct EditListItemSheetView: View {
-    var listItem: BigListItem
+    var listName: String
     @State var newListItemName: String = ""
-    @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var moc
 
     var body : some View {
         return NavigationView {
             ScrollView {
                 VStack() {
-                    BigTextField(enteredText: $newListItemName, placeholder: "New list name", onEditCommit: {
+                    BigTextField(enteredText: $newListItemName, placeholder: "Edit list name", onEditCommit: {
                         print(self.newListItemName)
                     })
                 }
             }
-            .onAppear() {
-                print(self.listItem.listText)
-                self.newListItemName = self.listItem.listText
-            }
             .navigationTitle("Editing List item")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
-                let worked = self.appState.renameListItem(listItemId: self.listItem.id, newListItemText: self.newListItemName)
-                print(worked)
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Save")

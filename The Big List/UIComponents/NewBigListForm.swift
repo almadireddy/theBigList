@@ -12,7 +12,7 @@ struct NewBigListForm: View {
     @Environment(\.presentationMode) var presentationMode
     @State var listNameError = ""
     @State var description = ""
-    @EnvironmentObject var allLists: AppState
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         NavigationView() {
@@ -41,8 +41,14 @@ struct NewBigListForm: View {
                 if (enteredText.trimmingCharacters(in: .whitespaces).count == 0) {
                     listNameError = "Please enter a name"
                 } else {
-                    _ = self.allLists.addNewList(listName: enteredText.trimmingCharacters(in: .whitespaces))
-                    _ = self.allLists.refreshLists()
+                    let newBigList = BigList(context: moc)
+                    newBigList.id = UUID()
+                    newBigList.listName = self.enteredText
+                    do {
+                        try self.moc.save()
+                    } catch {
+                        print("couldn't save: \(error)")
+                    }
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }) {

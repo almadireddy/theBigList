@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct EditListSheetView: View {
-    @Binding var list: BigList
+    @Binding var list: BigListOld
     @State var newListName: String = ""
-    @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var presentationMode
 
     var body : some View {
@@ -29,9 +28,7 @@ struct EditListSheetView: View {
             .navigationTitle("Editing List")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
-                let worked = appState.renameList(listId: list.id, newListName: self.newListName)
-                print("\(worked)")
-                _ = appState.refreshLists()
+                
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Save")
