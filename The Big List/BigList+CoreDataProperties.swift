@@ -28,12 +28,14 @@ extension BigList {
     }
     
     public var listItemArray : [BigListItem] {
-        let s = listItems?.array as? [BigListItem] ?? []
-        
+        var  s = listItems?.array as? [BigListItem] ?? []
+        s = s.sorted(by: {
+            $0.safeDueDate.compare($1.safeDueDate) == .orderedAscending
+        })
         return s
     }
-
 }
+
 
 // MARK: Generated accessors for listItems
 extension BigList {

@@ -28,7 +28,8 @@ struct ContentView: View {
                     GridItem(.flexible())
                 ], alignment: .leading, spacing: 10.0) {
                     ForEach(bigLists, id: \.id) { list in
-                        NavigationLink(destination: SingleListView(listName: list.safeListName, items: list.listItemArray),
+                        NavigationLink(destination: SingleListView(listName: list.safeListName,
+                                                                   items: list.listItemArray),
                                        tag: list.id ?? UUID(),
                                        selection: $action) {
                             Button(action: {

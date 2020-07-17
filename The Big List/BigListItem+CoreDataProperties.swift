@@ -28,4 +28,11 @@ extension BigListItem : Identifiable {
         return listItemText ?? "unknown"
     }
     
+    public var safeCreatedAt : Date {
+        return createdAt ?? Date(timeIntervalSince1970: 0)
+    }
+    
+    public var safeDueDate : Date {
+        return dueDate ?? Date(timeInterval: 0, since: safeCreatedAt)
+    }
 }

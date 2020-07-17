@@ -8,6 +8,12 @@
 import SwiftUI
 import Foundation
 
+let taskDateFormat: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter
+}()
+
 @main
 struct The_Big_ListApp: App {
     let context = PersistentContainer.persistentContainer.viewContext

@@ -7,34 +7,34 @@
 
 import SwiftUI
 
-
 struct SingleListView : View {
     var listName: String
     var items: Array<BigListItem>
     @State private var showSheet: Bool = false
+    @State private var selectedItem: BigListItem = BigListItem()
+    
     @EnvironmentObject private var store : AppStore
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: BigList.entity(), sortDescriptors: []) var allLists: FetchedResults<BigList>
     
-    func delete(at offsets: IndexSet) {
-        print("hey")
-    }
-
     var body: some View {
-        return List {
-            ForEach(items, id: \.id) { listItem in
-                BigListRow(listItem: listItem, editSheetPresented: self.$showSheet)
-            }
-            .onDelete(perform: delete)
-        
-            if self.items.count == 0 {
-                Text("It's lonely here. Add a new item below!")
-                    .font(.system(.body, design: .rounded))
-                    .padding(.vertical)
-                    .frame(alignment: .center)
+        return ScrollView() {
+            VStack(spacing: 15) {
+                ForEach(self.items, id: \.id) { item in
+                    BigListRow(listItem: item,
+                               editSheetPresented: self.$showSheet,
+                               selectedItem: self.$selectedItem)
+                }
+            
+                if self.items.count == 0 {
+                    Text("It's lonely here. Add a new item below!")
+                        .font(.system(.body, design: .rounded))
+                        .padding(.vertical)
+                        .frame(alignment: .center)
+                }
             }
         }
+        
         .navigationBarTitle(listName)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
@@ -65,7 +65,9 @@ struct SingleListView : View {
                 NewListItemForm(listName: self.listName).environment(\.managedObjectContext, self.moc)
             }
             else if self.store.state.selectedSheet == SheetType.editListItem {
-                EditListItemSheetView(listName: self.listName).environment(\.managedObjectContext, self.moc)
+                EditListItemSheetView(listName: self.listName,
+                                      selectedListItem: self.selectedItem)
+                    .environment(\.managedObjectContext, self.moc)
             }
             else if self.store.state.selectedSheet == SheetType.listSettings {
                 Text("hm")
@@ -73,10 +75,12 @@ struct SingleListView : View {
         }
     }
 }
- 
+
 struct NewListItemForm: View {
     var listName: String = ""
     @State private var newItemText: String = ""
+    @State private var newItemDueDate: Date = Date(timeIntervalSinceNow: 0)
+
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: BigList.entity(), sortDescriptors: []) var allLists: FetchedResults<BigList>
@@ -88,10 +92,23 @@ struct NewListItemForm: View {
                     BigTextField(enteredText: $newItemText, placeholder: "New item" , onEditCommit: {
                         self.newItemText = newItemText.trimmingCharacters(in: .whitespaces)
                     })
+                    .padding(.top)
+                    VStack {
+                        Text("Due Date")
+                            .font(.system(.body, design: .rounded))
+                            .bold()
+                        DatePicker("Due Date", selection: $newItemDueDate, displayedComponents: .date)
+                            .labelsHidden()
+                    }
+                    .padding(.horizontal)
+                        
                     .navigationBarTitle("New list item")
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(trailing:
                         Button(action: {
+                            if self.newItemText.count == 0 {
+                                return
+                            }
                             let newListItem = BigListItem(context: moc)
                             let parentList = allLists.first(where: { l in
                                 return l.listName ?? "" == self.listName
@@ -99,6 +116,8 @@ struct NewListItemForm: View {
                             
                             newListItem.listItemText = self.newItemText
                             newListItem.id = UUID()
+                            newListItem.createdAt = Date()
+                            newListItem.dueDate = self.newItemDueDate
                             newListItem.isComplete = false
                             
                             parentList?.addToListItems(newListItem)
