@@ -29,6 +29,7 @@
 		E8D4FF8324AFDFAE00832DE3 /* BigListOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8224AFDFAE00832DE3 /* BigListOld.swift */; };
 		E8D4FF8624AFE08A00832DE3 /* BigTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4FF8524AFE08A00832DE3 /* BigTextField.swift */; };
 		E8D990A124BC26BE004D3964 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D990A024BC26BE004D3964 /* AppState.swift */; };
+		E8EB698524C2C87F008069DB /* ColorChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB698424C2C87F008069DB /* ColorChooser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		E8D4FF8224AFDFAE00832DE3 /* BigListOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigListOld.swift; sourceTree = "<group>"; };
 		E8D4FF8524AFE08A00832DE3 /* BigTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextField.swift; sourceTree = "<group>"; };
 		E8D990A024BC26BE004D3964 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		E8EB698424C2C87F008069DB /* ColorChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChooser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				E8BD1D8424B2E70B005754A5 /* GradientButtonStyle.swift */,
 				E8BD1D8624B2F13D005754A5 /* EditListItemSheetView.swift */,
 				E80EF0AA24B594DF002338E3 /* BigListRow.swift */,
+				E8EB698424C2C87F008069DB /* ColorChooser.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			files = (
 				E8D4FF8624AFE08A00832DE3 /* BigTextField.swift in Sources */,
 				E8BD1D8724B2F13D005754A5 /* EditListItemSheetView.swift in Sources */,
+				E8EB698524C2C87F008069DB /* ColorChooser.swift in Sources */,
 				E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */,
 				E8D990A124BC26BE004D3964 /* AppState.swift in Sources */,
 				E883BEF524B0508E0074B839 /* NewBigListForm.swift in Sources */,
@@ -506,7 +510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "aahlad.com.The-Big-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -528,7 +532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "aahlad.com.The-Big-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -8,6 +8,29 @@
 import SwiftUI
 import Foundation
 
+
+enum BigListColor : String, CaseIterable {
+    case green, red, purple, orange, blue
+}
+
+public class BigListColorGradients {
+    static func getGradient(color: BigListColor) -> Gradient {
+        switch color {
+        case .red:
+            return Gradient(colors: [Color("DarkRed"), Color("LightRed")])
+        case .green:
+            return Gradient(colors: [Color("DarkGreen"), Color("LightGreen")])
+        case .purple:
+            return Gradient(colors: [Color("DarkPurple"), Color("LightPurple")])
+        case .orange:
+            return Gradient(colors: [Color("DarkOrange"), Color("LightOrange")])
+        case .blue:
+            return Gradient(colors: [Color("DarkBlue"), Color("LightBlue")])
+        }
+    }
+}
+
+
 let taskDateFormat: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium

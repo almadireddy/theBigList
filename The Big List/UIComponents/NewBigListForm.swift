@@ -12,6 +12,8 @@ struct NewBigListForm: View {
     @Environment(\.presentationMode) var presentationMode
     @State var listNameError = ""
     @State var description = ""
+    @State var selectedColor = BigListColor.green
+    
     @Environment(\.managedObjectContext) var moc
     
     var body: some View {
@@ -29,8 +31,15 @@ struct NewBigListForm: View {
                     .padding(.vertical, 25)
                     
                     if (listNameError.count > 0) {
-                        Text(listNameError).foregroundColor(.red).font(.body)
+                        Text(listNameError)
+                            .foregroundColor(.red).font(.system(.body, design: .rounded))
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 25)
+                            .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
                     }
+                    
+                    ColorChooser(selectedColor: self.$selectedColor)
+                        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
                 }
                 .padding(.horizontal, 15)
                 .padding(.bottom, 35)
@@ -44,6 +53,8 @@ struct NewBigListForm: View {
                     let newBigList = BigList(context: moc)
                     newBigList.id = UUID()
                     newBigList.listName = self.enteredText
+                    newBigList.color = self.selectedColor.rawValue
+                    
                     do {
                         try self.moc.save()
                     } catch {

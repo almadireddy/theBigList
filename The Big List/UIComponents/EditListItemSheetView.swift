@@ -15,6 +15,8 @@ struct EditListItemSheetView: View {
     @State var newDueDate: Date = Date()
     @State var dangerSheetPresented: Bool = false
     
+    @State private var includeDueDate: Bool = false
+    
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
 
@@ -22,11 +24,34 @@ struct EditListItemSheetView: View {
         return NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Basic details")) {
+                    Section(header: Text("List item name")) {
                         TextField("Edit list text", text: $newListItemName)
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        DatePicker("Due date", selection: self.$newDueDate, displayedComponents: .date)
-                            .datePickerStyle(CompactDatePickerStyle())
+                    }
+                    
+                    Section(header: Text("Basic details")) {
+                        Button(action: {
+                            let newValue = !self.includeDueDate
+                            self.includeDueDate = newValue
+                        }) {
+                            if self.includeDueDate {
+                                HStack {
+                                    Image(systemName: "calendar.badge.minus")
+                                    Text("Remove due date")
+                                }
+                            }
+                            else {
+                                HStack {
+                                    Image(systemName: "calendar.badge.plus")
+                                    Text("Add due date")
+                                }
+                            }
+                        }
+                        
+                        if self.includeDueDate {
+                            DatePicker("Due date", selection: self.$newDueDate, displayedComponents: .date)
+                                .datePickerStyle(CompactDatePickerStyle())
+                        }
                     }
                     Section(header: Text("Danger")) {
                         Button(action: {
@@ -54,14 +79,17 @@ struct EditListItemSheetView: View {
                 }
                 .listStyle(GroupedListStyle())
                 .environment(\.horizontalSizeClass, .regular)
-                .padding(.vertical, 5)
                 
                 .navigationTitle("Editing List item")
-                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button(action: {
                     self.moc.performAndWait {
                         self.selectedListItem.listItemText = self.newListItemName
-                        self.selectedListItem.dueDate = self.newDueDate
+                        if self.includeDueDate {
+                            self.selectedListItem.dueDate = self.newDueDate
+                        } else {
+                            self.selectedListItem.dueDate = nil
+                        }
+                        self.selectedListItem.updatedAt = Date()
                         
                         try? self.moc.save()
                     }
@@ -70,10 +98,10 @@ struct EditListItemSheetView: View {
                     Text("Save")
                 })
             }
-            .padding(.top)
         }
         .onAppear {
             self.newListItemName = self.selectedListItem.safeListItemText
+            self.includeDueDate = self.selectedListItem.dueDate != nil
         }
     }
 }

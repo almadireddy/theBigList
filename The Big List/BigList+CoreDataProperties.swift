@@ -27,6 +27,10 @@ extension BigList {
         return listName ?? "unknown"
     }
     
+    public var safeColor : String {
+        return color ?? "green"
+    }
+    
     public var listItemArray : [BigListItem] {
         var  s = listItems?.array as? [BigListItem] ?? []
         s = s.sorted(by: {

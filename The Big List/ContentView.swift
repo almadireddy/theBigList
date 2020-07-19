@@ -15,21 +15,19 @@ struct ContentView: View {
     @State var showingDetail = false
     @State var showRenameSheet = false
     @State private var action: UUID? = UUID()
-    @State var listToRename: BigListOld = BigListOld.defaultBigList()
     
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: BigList.entity(), sortDescriptors: []) var bigLists: FetchedResults<BigList>
     
     var body: some View {
-        return NavigationView {
+        return NavigationView() {
             ScrollView() {
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible())
                 ], alignment: .leading, spacing: 10.0) {
                     ForEach(bigLists, id: \.id) { list in
-                        NavigationLink(destination: SingleListView(listName: list.safeListName,
-                                                                   items: list.listItemArray),
+                        NavigationLink(destination: SingleListView(list: list),
                                        tag: list.id ?? UUID(),
                                        selection: $action) {
                             Button(action: {
@@ -38,13 +36,13 @@ struct ContentView: View {
                                 VStack() {
                                     Text("\(list.listName ?? "none")")
                                         .bold()
-                                        .foregroundColor(Color("TextColor"))
+                                        .foregroundColor(.white)
                                         .font(.system(.headline, design: .rounded))
                                 }
                                 .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 60, idealHeight: 60, maxHeight: 60, alignment: .bottomLeading)
                             
                             }
-                            .buttonStyle(GradientButtonStyle())
+                            .buttonStyle(GradientButtonStyle(color: BigListColor(rawValue: list.safeColor) ?? BigListColor.green))
                             .contextMenu() {
                                 Button(action: {
                                     print("edit")
@@ -70,10 +68,9 @@ struct ContentView: View {
                     }
                     NewListButton(showingDetail: self.$showingDetail)
                 }
-                .padding(.trailing)
             }
+            .padding(.horizontal, 20)
             .navigationBarTitle("The Big List")
-            .padding(.horizontal, 20.0)
         }
     }
 }

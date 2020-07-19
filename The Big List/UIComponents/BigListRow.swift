@@ -19,10 +19,13 @@ struct BigListRow: View {
         HStack {
             VStack {
                 HStack {
-                    Text("Due \(self.listItem.safeDueDate, formatter: taskDateFormat)")
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 15, weight: .light, design: .rounded))
-                    Spacer()
+                    if self.listItem.dueDate != nil {
+                        Text("Due \(self.listItem.safeDueDate, formatter: taskDateFormat)")
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: 15, weight: .light, design: .rounded))
+                        Spacer()
+                    }
+                    
                 }
                 
                 HStack {
@@ -42,11 +45,10 @@ struct BigListRow: View {
                                 .imageScale(.large)
                         }
                     }
-                    .padding(.trailing, 5)
-                    .foregroundColor(.yellow)
+                    .foregroundColor(Color("TextColor"))
                     
                     Text(listItem.safeListItemText)
-                        .font(.system(.title, design: .rounded))
+                        .font(.system(size: 18, weight: .regular, design: .rounded))
                         .multilineTextAlignment(.leading)
                         .frame(minWidth: 0,
                                idealWidth: .infinity,
@@ -55,9 +57,7 @@ struct BigListRow: View {
                     
                     Spacer()
                 }
-                
             }
-            .padding(.leading)
             
             HStack {
                 Button(action: {
@@ -68,13 +68,11 @@ struct BigListRow: View {
                     Image(systemName: "square.and.pencil")
                         .imageScale(.large)
                 }
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
             }
-            .padding(.trailing)
         }
-        .padding(.vertical)
+        .padding(.all)
         .background(Color("ThemeBg"))
         .cornerRadius(15)
-        .padding(.horizontal)
     }
 }
