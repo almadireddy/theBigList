@@ -19,7 +19,7 @@
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BigList" inverseName="listItems" inverseEntity="BigList"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="listItems" inverseEntity="Tag"/>
     </entity>
-    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="tagName" attributeType="String"/>

@@ -23,7 +23,8 @@ extension BigListItem : Identifiable {
     @NSManaged public var listItemText: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var parentList: BigList?
-
+    @NSManaged public var tags: NSSet?
+    
     public var safeListItemText: String {
         return listItemText ?? "unknown"
     }
@@ -35,4 +36,25 @@ extension BigListItem : Identifiable {
     public var safeDueDate : Date {
         return dueDate ?? Date(timeInterval: 0, since: safeCreatedAt)
     }
+    
+    public var safeTags : [Tag] {
+        return tags?.allObjects as? [Tag] ?? []
+    }
+}
+
+// MARK: Generated accessors for tags
+extension BigListItem {
+
+    @objc(addTagsObject:)
+    @NSManaged public func addToTags(_ value: Tag)
+
+    @objc(removeTagsObject:)
+    @NSManaged public func removeFromTags(_ value: Tag)
+
+    @objc(addTags:)
+    @NSManaged public func addToTags(_ values: NSSet)
+
+    @objc(removeTags:)
+    @NSManaged public func removeFromTags(_ values: NSSet)
+
 }

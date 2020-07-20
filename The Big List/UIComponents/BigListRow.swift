@@ -16,60 +16,69 @@ struct BigListRow: View {
     @Environment(\.managedObjectContext) var moc
     
     var body: some View {
-        HStack {
-            VStack {
-                HStack {
-                    if self.listItem.dueDate != nil {
-                        Text("Due \(self.listItem.safeDueDate, formatter: taskDateFormat)")
-                            .multilineTextAlignment(.leading)
-                            .font(.system(size: 15, weight: .light, design: .rounded))
-                        Spacer()
+        VStack(alignment: .leading) {
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        if self.listItem.dueDate != nil {
+                            Text("Due \(self.listItem.safeDueDate, formatter: taskDateFormat)")
+                                .multilineTextAlignment(.leading)
+                                .font(.system(size: 15, weight: .light, design: .rounded))
+                            Spacer()
+                        }
+                        
                     }
                     
+                    HStack {
+                        Button(action: {
+                            let newValue = !self.listItem.isComplete
+                            
+                            moc.performAndWait {
+                                listItem.isComplete = newValue
+                                try? moc.save()
+                            }
+                        }) {
+                            if self.listItem.isComplete {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .imageScale(.large)
+                            } else {
+                                Image(systemName: "circle")
+                                    .imageScale(.large)
+                            }
+                        }
+                        .foregroundColor(Color("TextColor"))
+                        
+                        Text(listItem.safeListItemText)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .multilineTextAlignment(.leading)
+                            .frame(minWidth: 0,
+                                   idealWidth: .infinity,
+                                   maxWidth: .infinity,
+                                   alignment: .leading)
+                        
+                        Spacer()
+                    }
                 }
                 
                 HStack {
                     Button(action: {
-                        let newValue = !self.listItem.isComplete
-                        
-                        moc.performAndWait {
-                            listItem.isComplete = newValue
-                            try? moc.save()
-                        }
+                        self.store.setSelectedSheet(.editListItem)
+                        self.selectedItem = self.listItem
+                        self.editSheetPresented = true
                     }) {
-                        if self.listItem.isComplete {
-                            Image(systemName: "checkmark.circle.fill")
-                                .imageScale(.large)
-                        } else {
-                            Image(systemName: "circle")
-                                .imageScale(.large)
-                        }
+                        Image(systemName: "square.and.pencil")
+                            .imageScale(.large)
                     }
                     .foregroundColor(Color("TextColor"))
-                    
-                    Text(listItem.safeListItemText)
-                        .font(.system(size: 18, weight: .regular, design: .rounded))
-                        .multilineTextAlignment(.leading)
-                        .frame(minWidth: 0,
-                               idealWidth: .infinity,
-                               maxWidth: .infinity,
-                               alignment: .leading)
-                    
-                    Spacer()
                 }
             }
-            
-            HStack {
-                Button(action: {
-                    self.store.setSelectedSheet(.editListItem)
-                    self.selectedItem = self.listItem
-                    self.editSheetPresented = true
-                }) {
-                    Image(systemName: "square.and.pencil")
-                        .imageScale(.large)
+            HStack(alignment: .top, spacing: 10) {
+                ForEach(listItem.safeTags, id: \.id) { t in
+                    InlineTag(tag: t)
                 }
-                .foregroundColor(Color("TextColor"))
+                Spacer()
             }
+            .padding(.leading, 30)
         }
         .padding(.all)
         .background(Color("ThemeBg"))

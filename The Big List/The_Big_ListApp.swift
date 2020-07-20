@@ -30,6 +30,23 @@ public class BigListColorGradients {
     }
 }
 
+public class TagColors {
+    static func getColor(color: BigListColor) -> Color {
+        switch color {
+        case .red:
+            return Color("DarkRed")
+        case .green:
+            return Color("DarkGreen")
+        case .purple:
+            return Color("DarkPurple")
+        case .orange:
+            return Color("DarkOrange")
+        case .blue:
+            return Color("DarkBlue")
+        }
+    }
+}
+
 
 let taskDateFormat: DateFormatter = {
     let formatter = DateFormatter()

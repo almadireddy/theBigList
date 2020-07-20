@@ -193,14 +193,20 @@ struct NewListItemForm: View {
                         newListItem.listItemText = self.newItemText
                         newListItem.id = UUID()
                         newListItem.createdAt = Date()
-                        
+                        newListItem.isComplete = false
                         newListItem.dueDate = nil
+                        
                         if self.includeDueDate == true {
                             newListItem.dueDate = self.newItemDueDate
                         }
                         
-                        newListItem.isComplete = false
+                        let sampleTag = Tag(context: moc)
                         
+                        sampleTag.tagName = "testTag"
+                        sampleTag.id = UUID()
+                        sampleTag.color = "green"
+                        
+                        newListItem.addToTags(sampleTag)
                         parentList?.addToListItems(newListItem)
                         
                         do {
