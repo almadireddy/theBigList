@@ -200,13 +200,6 @@ struct NewListItemForm: View {
                             newListItem.dueDate = self.newItemDueDate
                         }
                         
-                        let sampleTag = Tag(context: moc)
-                        
-                        sampleTag.tagName = "testTag"
-                        sampleTag.id = UUID()
-                        sampleTag.color = "green"
-                        
-                        newListItem.addToTags(sampleTag)
                         parentList?.addToListItems(newListItem)
                         
                         do {

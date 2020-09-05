@@ -19,6 +19,7 @@ struct InlineTag : View {
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 5)
+        .foregroundColor(.white)
         .background(TagColors.getColor(color: BigListColor(rawValue: tag.safeColor) ?? .green).opacity(0.75))
         .cornerRadius(5)
     }

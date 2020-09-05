@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		E828EBF124C532A8006B4A92 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828EBEF24C532A8006B4A92 /* Tag+CoreDataClass.swift */; };
 		E828EBF224C532A8006B4A92 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828EBF024C532A8006B4A92 /* Tag+CoreDataProperties.swift */; };
 		E828EBF824C53A5E006B4A92 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828EBF724C53A5E006B4A92 /* Tag.swift */; };
+		E828EBFB24C6A553006B4A92 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = E828EBFA24C6A553006B4A92 /* ASCollectionView */; };
+		E828EBFD24C6A68D006B4A92 /* AlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828EBFC24C6A68D006B4A92 /* AlignedFlowLayout.swift */; };
+		E828EC0124C6C141006B4A92 /* AllTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828EC0024C6C141006B4A92 /* AllTagsView.swift */; };
+		E828EC0324C6C2E9006B4A92 /* NewTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828EC0224C6C2E9006B4A92 /* NewTag.swift */; };
 		E83153BD24ABFC7500DBB007 /* The_Big_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */; };
 		E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83153BE24ABFC7500DBB007 /* ContentView.swift */; };
 		E83153C124ABFC7600DBB007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E83153C024ABFC7600DBB007 /* Assets.xcassets */; };
@@ -58,6 +62,9 @@
 		E828EBEF24C532A8006B4A92 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataClass.swift"; path = "The Big List/Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E828EBF024C532A8006B4A92 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataProperties.swift"; path = "The Big List/Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E828EBF724C53A5E006B4A92 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		E828EBFC24C6A68D006B4A92 /* AlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedFlowLayout.swift; sourceTree = "<group>"; };
+		E828EC0024C6C141006B4A92 /* AllTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsView.swift; sourceTree = "<group>"; };
+		E828EC0224C6C2E9006B4A92 /* NewTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTag.swift; sourceTree = "<group>"; };
 		E83153B924ABFC7500DBB007 /* The Big List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Big List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83153BC24ABFC7500DBB007 /* The_Big_ListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Big_ListApp.swift; sourceTree = "<group>"; };
 		E83153BE24ABFC7500DBB007 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E828EBFB24C6A553006B4A92 /* ASCollectionView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +202,9 @@
 				E80EF0AA24B594DF002338E3 /* BigListRow.swift */,
 				E8EB698424C2C87F008069DB /* ColorChooser.swift */,
 				E828EBF724C53A5E006B4A92 /* Tag.swift */,
+				E828EBFC24C6A68D006B4A92 /* AlignedFlowLayout.swift */,
+				E828EC0024C6C141006B4A92 /* AllTagsView.swift */,
+				E828EC0224C6C2E9006B4A92 /* NewTag.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -215,6 +226,7 @@
 			);
 			name = "The Big List";
 			packageProductDependencies = (
+				E828EBFA24C6A553006B4A92 /* ASCollectionView */,
 			);
 			productName = "The Big List";
 			productReference = E83153B924ABFC7500DBB007 /* The Big List.app */;
@@ -288,6 +300,7 @@
 			);
 			mainGroup = E83153B024ABFC7500DBB007;
 			packageReferences = (
+				E828EBF924C6A553006B4A92 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 			);
 			productRefGroup = E83153BA24ABFC7500DBB007 /* Products */;
 			projectDirPath = "";
@@ -333,14 +346,17 @@
 			files = (
 				E8D4FF8624AFE08A00832DE3 /* BigTextField.swift in Sources */,
 				E8BD1D8724B2F13D005754A5 /* EditListItemSheetView.swift in Sources */,
+				E828EC0124C6C141006B4A92 /* AllTagsView.swift in Sources */,
 				E8EB698524C2C87F008069DB /* ColorChooser.swift in Sources */,
 				E8BD1D8524B2E70B005754A5 /* GradientButtonStyle.swift in Sources */,
 				E8D990A124BC26BE004D3964 /* AppState.swift in Sources */,
 				E883BEF524B0508E0074B839 /* NewBigListForm.swift in Sources */,
 				E828EBF824C53A5E006B4A92 /* Tag.swift in Sources */,
 				E8BFB99524B99B37007B5B05 /* BigList+CoreDataProperties.swift in Sources */,
+				E828EBFD24C6A68D006B4A92 /* AlignedFlowLayout.swift in Sources */,
 				E8BFB99424B99B37007B5B05 /* BigList+CoreDataClass.swift in Sources */,
 				E8BFB98D24B98910007B5B05 /* PersistentContainer.swift in Sources */,
+				E828EC0324C6C2E9006B4A92 /* NewTag.swift in Sources */,
 				E83153BF24ABFC7500DBB007 /* ContentView.swift in Sources */,
 				E828EBF124C532A8006B4A92 /* Tag+CoreDataClass.swift in Sources */,
 				E828EBF224C532A8006B4A92 /* Tag+CoreDataProperties.swift in Sources */,
@@ -668,6 +684,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E828EBF924C6A553006B4A92 /* XCRemoteSwiftPackageReference "ASCollectionView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E828EBFA24C6A553006B4A92 /* ASCollectionView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E828EBF924C6A553006B4A92 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
+			productName = ASCollectionView;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E805D5F124B81D6B0060547D /* BigList.xcdatamodeld */ = {

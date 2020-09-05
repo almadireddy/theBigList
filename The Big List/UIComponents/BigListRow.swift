@@ -72,13 +72,15 @@ struct BigListRow: View {
                     .foregroundColor(Color("TextColor"))
                 }
             }
-            HStack(alignment: .top, spacing: 10) {
-                ForEach(listItem.safeTags, id: \.id) { t in
-                    InlineTag(tag: t)
+            if self.listItem.safeTags.count > 0 {
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 10) {
+                        ForEach(listItem.safeTags, id: \.id) { t in
+                            InlineTag(tag: t)
+                        }
+                    }
                 }
-                Spacer()
             }
-            .padding(.leading, 30)
         }
         .padding(.all)
         .background(Color("ThemeBg"))
